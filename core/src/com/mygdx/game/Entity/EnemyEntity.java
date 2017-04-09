@@ -1,7 +1,14 @@
 package com.mygdx.game.Entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 
+import java.util.LinkedList;
 import java.util.Random;
 
 /**
@@ -11,12 +18,45 @@ import java.util.Random;
 public class EnemyEntity extends BasicEntity {
     private int wall;
     private float timer;
+    public float rotate;
+    public boolean canMoving = true;
+    private static final int FRAME_COLS = 17;
+    Animation<TextureRegion> walkAnimation;
+    Texture walkSheet;
+    float stateTime;
+    ProgressBar pb;
 
-    public EnemyEntity(String name, float x, float y) {
-        super(name, x, y);
+
+    public EnemyEntity(String name) {
+        super(name);
         wall = generator.nextInt(4);
         getRandomPosition();
         SPEED = 100;
+        //pb = new ProgressBar(position.x, position.y);
+
+        walkSheet = new Texture(Gdx.files.internal("zombiewalk.png"));
+        TextureRegion[][] tmp = TextureRegion.split(walkSheet, (walkSheet.getWidth() / FRAME_COLS), walkSheet.getHeight());
+        TextureRegion[] walkFrames = new TextureRegion[FRAME_COLS];
+
+        int index = 0;
+        for (int i = 0; i < FRAME_COLS; i++) {
+            walkFrames[index] = tmp[0][i];
+            index++;
+        }
+        walkAnimation = new Animation<>(0.050f, walkFrames);
+        stateTime = 0f;
+    }
+
+    public void draw(SpriteBatch batch, float delta) {
+        stateTime += delta;
+        if(canMoving) {
+            TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
+            batch.draw(currentFrame,position.x, position.y, sprite.getOriginX(), sprite.getOriginY(), (walkSheet.getWidth() / FRAME_COLS)/3, walkSheet.getHeight()/3, 1, 1, sprite.getRotation()+90);
+        } else {
+            sprite.setPosition(position.x, position.y);
+            sprite.draw(batch);
+        }
+
     }
 
     public void getRandomPosition() {
@@ -40,10 +80,44 @@ public class EnemyEntity extends BasicEntity {
 
     public void update(float delta) {
         timer += delta;
-        forward(delta);
+        if(canMoving) {
+            forward(delta);
+            sprite.setRotation(sprite.getRotation() + rotate * delta);
+        }
+
         if(timer > 2){
-            sprite.setRotation(sprite.getRotation() + generator.nextInt(80)-40);
+            rotate = generator.nextInt(100)-50;
             timer = 0;
+        }
+    }
+
+    @Override
+    public void dispose () {
+        tex.dispose();
+    }
+
+    public static class ProgressBar extends Sprite {
+        private Texture tex;
+        Sprite progressbar;
+        Vector2 positionOfBar;
+
+        public ProgressBar(float x, float y){
+            tex = new Texture("healthbar.png");
+            progressbar = new Sprite(tex);
+            positionOfBar = new Vector2(x, y);
+            progressbar.setSize(50, 5);
+        }
+
+        public void draw(SpriteBatch batch) {
+            progressbar.draw(batch);
+        }
+
+        public void reduceBar(int howMuch) {
+            progressbar.setSize(progressbar.getWidth() - howMuch, progressbar.getHeight());
+        }
+
+        public void dispose() {
+            tex.dispose();
         }
     }
 }

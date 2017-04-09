@@ -33,9 +33,14 @@ public class BasicEntity extends Sprite {
         sprite.setOriginCenter();
     }
 
-    public void draw(SpriteBatch batch) {
-        sprite.setPosition(position.x, position.y);
-        sprite.draw(batch);
+    public BasicEntity(String name) {
+        tex = new Texture(name + ".png");
+        sprite = new Sprite(tex);
+        position = new Vector2();
+        width = tex.getWidth()/3;
+        height = tex.getHeight()/3;
+        sprite.setSize(width, height);
+        sprite.setOriginCenter();
     }
 
     public void dispose () {

@@ -24,8 +24,8 @@ public class Bullet extends Sprite {
         tex = new Texture("bullet.png");
         sprite = new Sprite(tex);
         position = new Vector2(x, y);
-        width = tex.getWidth()/2;
-        height = tex.getHeight()/2;
+        width = tex.getWidth();
+        height = tex.getHeight();
         sprite.setSize(width, height);
         sprite.setRotation(rotation);
         sprite.setOriginCenter();

@@ -3,6 +3,7 @@ package com.mygdx.game.Service;
 import com.mygdx.game.Entity.BasicEntity;
 import com.mygdx.game.Entity.EnemyEntity;
 import com.mygdx.game.Items.Bullet;
+import com.mygdx.game.Items.Item;
 
 /**
  * Created by Adrian on 2017-04-09.
@@ -14,8 +15,50 @@ public abstract class Collision {
                 b.position.y > e.position.y + e.height || b.position.y + b.height < e.position.y);
     }
 
+    public static boolean isBulletHitItem(Bullet b, Item e) {
+        return !(b.position.x > e.position.x + e.width-40 || b.position.x + b.width < e.position.x +40||
+                b.position.y > e.position.y + e.height-40 || b.position.y + b.height < e.position.y+40);
+    }
+
     public static boolean isPlayerHitEnemy(BasicEntity e, BasicEntity p) {
-        return !(e.position.x > p.position.x + p.width || e.position.x + e.width < p.position.x ||
-                e.position.y > p.position.y + p.height || e.position.y + e.height < p.position.y);
+        return !(e.position.x > p.position.x + p.width -40|| e.position.x + e.width < p.position.x+40 ||
+                e.position.y > p.position.y + p.height -40|| e.position.y + e.height < p.position.y+40);
+    }
+
+    public static boolean isEnemyOnScreen(EnemyEntity e) {
+        return (e.position.x > 1500 || e.position.x < -150 ||
+                e.position.y > 1200 || e.position.y < -150);
+    }
+
+    public static boolean isBulletOnScreen(Bullet b) {
+        return (b.position.x > 1500 || b.position.x < -150 ||
+                b.position.y > 1200 || b.position.y < -150);
+    }
+
+    public static boolean isBasicOnPlatform(BasicEntity player, Item box) {
+        return  ((player.position.x + player.width - 2 >= box.position.x) && (player.position.x + 2 <= box.position.x + box.width)
+                && (player.position.y <= box.position.y + box.height + 2) && (player.position.y >= box.position.y + box.height - 2));
+    }
+
+    public static boolean isBasicHitLeft(BasicEntity player, Item box) {
+        return ((player.position.x + player.width >= box.position.x) && ((player.position.x + player.width) < (box.position.x + box.width))
+                && (player.position.y < (box.position.y + box.height)) && ((player.position.y + player.height) > box.position.y));
+    }
+
+    public static boolean isBasicHitRight(BasicEntity player, Item box) {
+        return ((player.position.x <= box.position.x + box.width) && (player.position.x > box.position.x)
+                && (player.position.y < box.position.y + box.height) && (player.position.y + player.height > box.position.y));
+    }
+
+    public static boolean isBasicHitBottom(BasicEntity player, Item box) {
+        return ((player.position.y + player.height > box.position.y) && (player.position.y + player.height < box.position.y + box.height)
+                && (player.position.x + 2 < box.position.x + box.width) && (player.position.x + player.width - 2 > box.position.x));
+    }
+
+    public static boolean overlaps(BasicEntity b, Item e) {
+        if(!(b.position.x > e.position.x + e.width || b.position.x + b.width  < e.position.x ||
+                b.position.y > e.position.y + e.height || b.position.y + b.height < e.position.y)) {
+            return true;
+        } else return false;
     }
 }
