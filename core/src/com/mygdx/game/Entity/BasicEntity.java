@@ -1,9 +1,7 @@
 package com.mygdx.game.Entity;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 
@@ -13,7 +11,7 @@ import java.util.Random;
  * Created by Adrian on 2017-04-08.
  */
 
-public class BasicEntity extends Sprite {
+public abstract class BasicEntity extends Sprite {
 
     public float width;
     public float height;

@@ -8,9 +8,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-import java.util.LinkedList;
-import java.util.Random;
-
 /**
  * Created by Adrian on 2017-04-08.
  */
@@ -24,8 +21,6 @@ public class EnemyEntity extends BasicEntity {
     Animation<TextureRegion> walkAnimation;
     Texture walkSheet;
     float stateTime;
-    ProgressBar pb;
-
 
     public EnemyEntity(String name) {
         super(name);
@@ -43,7 +38,7 @@ public class EnemyEntity extends BasicEntity {
             walkFrames[index] = tmp[0][i];
             index++;
         }
-        walkAnimation = new Animation<>(0.050f, walkFrames);
+        walkAnimation = new Animation<>(0.033f, walkFrames);
         stateTime = 0f;
     }
 
@@ -109,6 +104,7 @@ public class EnemyEntity extends BasicEntity {
         }
 
         public void draw(SpriteBatch batch) {
+            progressbar.setPosition(positionOfBar.x, positionOfBar.y);
             progressbar.draw(batch);
         }
 

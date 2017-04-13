@@ -16,13 +16,13 @@ public abstract class Collision {
     }
 
     public static boolean isBulletHitItem(Bullet b, Item e) {
-        return !(b.position.x > e.position.x + e.width-40 || b.position.x + b.width < e.position.x +40||
-                b.position.y > e.position.y + e.height-40 || b.position.y + b.height < e.position.y+40);
+        return !(b.position.x > e.position.x + e.width-10 || b.position.x + b.width < e.position.x +10||
+                b.position.y > e.position.y + e.height-10 || b.position.y + b.height < e.position.y+10);
     }
 
     public static boolean isPlayerHitEnemy(BasicEntity e, BasicEntity p) {
-        return !(e.position.x > p.position.x + p.width -40|| e.position.x + e.width < p.position.x+40 ||
-                e.position.y > p.position.y + p.height -40|| e.position.y + e.height < p.position.y+40);
+        return !(e.position.x > p.position.x + p.width -60|| e.position.x + e.width < p.position.x+60 ||
+                e.position.y > p.position.y + p.height -60|| e.position.y + e.height < p.position.y+60);
     }
 
     public static boolean isEnemyOnScreen(EnemyEntity e) {
@@ -56,8 +56,8 @@ public abstract class Collision {
     }
 
     public static boolean overlaps(BasicEntity b, Item e) {
-        if(!(b.position.x > e.position.x + e.width || b.position.x + b.width  < e.position.x ||
-                b.position.y > e.position.y + e.height || b.position.y + b.height < e.position.y)) {
+        if(!(b.position.x+50 > e.position.x + e.width || b.position.x + b.width-50  < e.position.x ||
+                b.position.y+50 > e.position.y + e.height || b.position.y + b.height-50 < e.position.y)) {
             return true;
         } else return false;
     }
