@@ -12,7 +12,6 @@ public class MyGdxGame extends ApplicationAdapter {
     @Override
 	public void create () {
 		game = new Game();
-        game.init();
 	}
 
 	@Override

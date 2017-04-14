@@ -50,7 +50,7 @@ public class Game {
     private LinkedList<ParticleSystem> particleSystems;
     private LinkedList<ParticleSystem> particleSystemsToRemove;
 
-    public void init() {
+    public Game() {
         batch = new SpriteBatch();
         img = new Texture("ground.jpg");
         player = new PlayerEntity("player", 400, 400);
