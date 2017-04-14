@@ -22,7 +22,6 @@ public class PlayerEntity extends BasicEntity {
 
     public PlayerEntity(String image,float x, float y) {
         super(image, x, y);
-        sprite.setOriginCenter();
         walkSheet = new Texture(Gdx.files.internal("playerwalk.png"));
         TextureRegion[][] tmp = TextureRegion.split(walkSheet, (walkSheet.getWidth() / FRAME_COLS), walkSheet.getHeight());
         TextureRegion[] walkFrames = new TextureRegion[FRAME_COLS];
@@ -38,8 +37,10 @@ public class PlayerEntity extends BasicEntity {
 
      public void draw(SpriteBatch batch, float delta) {
         stateTime += delta;
+        sprite.setPosition(position.x, position.y);
         TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-        batch.draw(currentFrame, position.x, position.y, sprite.getWidth()/2, sprite.getHeight()/2, (walkSheet.getWidth() / FRAME_COLS)/3, walkSheet.getHeight()/3, 1, 1, sprite.getRotation()+90);
+        batch.draw(currentFrame, position.x, position.y, sprite.getOriginX()+20, sprite.getOriginY()-20,
+                (walkSheet.getWidth() / FRAME_COLS)/3, walkSheet.getHeight()/3, 1, 1, sprite.getRotation()+90);
     }
 
     @Override

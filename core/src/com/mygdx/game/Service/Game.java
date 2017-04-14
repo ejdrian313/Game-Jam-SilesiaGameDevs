@@ -1,11 +1,9 @@
 package com.mygdx.game.Service;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,8 +11,6 @@ import com.mygdx.game.Entity.EnemyEntity;
 import com.mygdx.game.Entity.PlayerEntity;
 import com.mygdx.game.Items.Bullet;
 import com.mygdx.game.Items.Item;
-import com.mygdx.game.Service.Collision;
-import com.mygdx.game.Service.ParticleSystem;
 
 import java.util.LinkedList;
 
@@ -22,7 +18,7 @@ import java.util.LinkedList;
  * Created by Adrian on 2017-04-14.
  */
 
-public class Game {
+public final class Game {
     private SpriteBatch batch;
     private int ammo = 500;
     private int counter = 0;
@@ -117,7 +113,7 @@ public class Game {
         checkCollision();
         destroy();
         addEnemy(delta);
-        hudText = "Time to eat all the coal: " + timeToEat + "\nYou killed: " + counter + "\nTime of game: " + (int)timeOfGame;
+        hudText = "Time to eat all the coal: " + (int)timeToEat + "\nYou killed: " + counter + "\nTime of game: " + (int)timeOfGame;
     }
 
     private void handleInput(float d) {
@@ -138,7 +134,7 @@ public class Game {
 
     private void addEnemy(float delta) {
         timer += delta;
-        if(timer > 1.5) {
+        if(timer > 0.5 && enemyEntities.size() < 50) {
             enemyEntities.add(new EnemyEntity("zombie"));
             enemyEntities.add(new EnemyEntity("zombie"));
             timer = 0;
@@ -150,7 +146,6 @@ public class Game {
         for(Item i : items) {
             i.draw(batch);
         }
-
         player.draw(batch, delta);
 
         for(ParticleSystem s : particleSystems) {
@@ -220,9 +215,11 @@ public class Game {
                 //lose = true;
                 playerHit.play();
                 particleSystems.add(new ParticleSystem(40, "transparentRed",
-                        player.position.x, player.position.y, player.sprite.getRotation()));
+                        player.position.x + player.width/2,
+                        player.position.y + player.height/2, player.sprite.getRotation()));
                 particleSystems.add(new ParticleSystem(40, "yellow",
-                        player.position.x, player.position.y, player.sprite.getRotation()));
+                        player.position.x + player.width/2,
+                        player.position.y + player.height/2, player.sprite.getRotation()));
             }
             if(Collision.isEnemyOnScreen(e)) {
                 enemyEntitiesToDestroy.add(e);

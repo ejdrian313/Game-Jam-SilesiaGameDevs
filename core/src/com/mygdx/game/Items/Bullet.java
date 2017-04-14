@@ -18,6 +18,7 @@ public class Bullet extends Sprite {
     private Sprite sprite;
     private final float SPEED = 800;
     private static int power;
+    private float alpha = 0.3f;
 
 
     public Bullet(float x, float y, float rotation) {
@@ -33,11 +34,12 @@ public class Bullet extends Sprite {
 
     public void draw(SpriteBatch batch) {
         sprite.setPosition(position.x, position.y);
-        sprite.draw(batch);
+        sprite.draw(batch, alpha);
     }
 
     public void update(float deltaTime, Bullet b) {
         b.forward(deltaTime);
+        alpha += deltaTime;
     }
 
     private float toRad(float degrees)

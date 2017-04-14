@@ -1,5 +1,6 @@
 package com.mygdx.game.Entity;
 
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
@@ -47,7 +48,7 @@ public abstract class BasicEntity extends Sprite {
 
     /**
      *
-     * Moving_metods
+     * Moving_methods
      */
 
     protected void forward(float delta) {
