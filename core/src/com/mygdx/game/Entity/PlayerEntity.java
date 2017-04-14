@@ -49,10 +49,6 @@ public class PlayerEntity extends BasicEntity {
     }
 
     public void handleInput(float delta) {
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            Gdx.app.exit();
-        }
-
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             sprite.setRotation(sprite.getRotation() + ROTATAION_SPEED);
         } else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {

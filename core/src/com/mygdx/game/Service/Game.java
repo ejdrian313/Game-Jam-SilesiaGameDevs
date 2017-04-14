@@ -11,6 +11,7 @@ import com.mygdx.game.Entity.EnemyEntity;
 import com.mygdx.game.Entity.PlayerEntity;
 import com.mygdx.game.Items.Bullet;
 import com.mygdx.game.Items.Item;
+import com.mygdx.game.MyGdxGame;
 
 import java.util.LinkedList;
 
@@ -69,9 +70,9 @@ public final class Game {
         playerHit = Gdx.audio.newMusic(Gdx.files.internal("playerHit.wav"));
     }
 
-    public void update() {
-        handleInput(delta);
-        update(delta);
+    public void update(State state) {
+        handleInput(delta, state);
+        updateGame(delta);
     }
 
     public void draw() {
@@ -99,7 +100,7 @@ public final class Game {
         font.dispose();
     }
 
-    private void update(float delta) {
+    private void updateGame(float delta) {
         for(ParticleSystem s : particleSystems) {
             s.update(delta);
         }
@@ -116,9 +117,11 @@ public final class Game {
         hudText = "Time to eat all the coal: " + (int)timeToEat + "\nYou killed: " + counter + "\nTime of game: " + (int)timeOfGame;
     }
 
-    private void handleInput(float d) {
+    private void handleInput(float d, State state) {
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            MyGdxGame.setGameState(State.PAUSE);
+        }
         player.handleInput(d);
-
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeToReload > .5f && ammo > 0) {
             Bullet b1 = new Bullet(player.position.x + player.width/2,
                     player.position.y + player.height/2, player.sprite.getRotation());
@@ -232,5 +235,14 @@ public final class Game {
                 }
             }
         }
+    }
+
+    public void paused() {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            MyGdxGame.setGameState(State.RUN);
+        }
+        batch.begin();
+        batch.draw(img, 0, 0);
+        batch.end();
     }
 }
