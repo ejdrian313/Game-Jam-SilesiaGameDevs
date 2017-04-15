@@ -1,9 +1,5 @@
 package com.mygdx.game.Items;
-
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Entity.Entity;
 
 /**
  * Created by Adrian on 2017-04-09.

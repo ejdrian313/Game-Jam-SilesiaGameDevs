@@ -12,7 +12,7 @@ import com.badlogic.gdx.math.Vector2;
  * Created by Adrian on 2017-04-08.
  */
 
-public class EnemyEntity extends BasicEntity {
+public class EnemyEntity extends MovableEntity {
     private int wall;
     private float timer;
     public float rotate;
@@ -23,7 +23,7 @@ public class EnemyEntity extends BasicEntity {
     float stateTime;
 
     public EnemyEntity(String name) {
-        super(name);
+        super(name, 0, 0);
         wall = generator.nextInt(4);
         getRandomPosition();
         SPEED = 100;

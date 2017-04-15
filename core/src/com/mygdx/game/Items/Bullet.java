@@ -1,29 +1,37 @@
 package com.mygdx.game.Items;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Service.Steer;
+import com.mygdx.game.Entity.MovableEntity;
 
 /**
  * Created by Adrian on 2017-04-08.
  */
 
-public class Bullet extends Entity implements Steer {
+public class Bullet extends MovableEntity {
     private final float SPEED = 800;
+    private float alpha = 0.3f;
     private int power;
 
     public Bullet(float x, float y, float rotation) {
         super("bullet", x, y);
+        width = tex.getWidth();
+        height = tex.getHeight();
+        sprite.setSize(width, height);
+        sprite.setOriginCenter();
         sprite.setRotation(rotation);
-        alpha = 0.3f;
     }
 
     public void update(float deltaTime, Bullet b) {
         b.forward(deltaTime);
         alpha += deltaTime;
+    }
+
+    @Override
+    public void draw(SpriteBatch batch) {
+        sprite.setPosition(position.x, position.y);
+        sprite.draw(batch, alpha);
     }
 
     public int getPower() {

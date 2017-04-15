@@ -12,12 +12,11 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * Created by Adrian on 2017-04-08.
  */
 
-public class PlayerEntity extends BasicEntity {
-    private final float ROTATAION_SPEED = 5;
+public class PlayerEntity extends MovableEntity {
     private static final int FRAME_COLS = 20;
-    Animation<TextureRegion> walkAnimation;
-    Texture walkSheet;
-    float stateTime;
+    private Animation<TextureRegion> walkAnimation;
+    private Texture walkSheet;
+    private float stateTime;
 
 
     public PlayerEntity(String image,float x, float y) {
@@ -49,6 +48,7 @@ public class PlayerEntity extends BasicEntity {
     }
 
     public void handleInput(float delta) {
+        float ROTATAION_SPEED = 5;
         if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             sprite.setRotation(sprite.getRotation() + ROTATAION_SPEED);
         } else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
