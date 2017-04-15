@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.Service.Game;
 import com.mygdx.game.Service.State;
 
-public class MyGdxGame extends ApplicationAdapter {
+public final class MyGdxGame extends ApplicationAdapter {
     public static State state = State.RUN;
     private Game game;
 
@@ -21,7 +21,7 @@ public class MyGdxGame extends ApplicationAdapter {
         switch (state)
         {
             case RUN:
-                game.update(state);
+                game.update();
                 clear();
                 game.draw();
                 break;
@@ -43,7 +43,7 @@ public class MyGdxGame extends ApplicationAdapter {
     }
 
     private void clear() {
-        Gdx.gl.glClearColor(136/255f, 136/255f, 136/255f, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
 }

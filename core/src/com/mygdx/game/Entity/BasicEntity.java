@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Service.Steer;
 
 import java.util.Random;
 
@@ -12,7 +13,7 @@ import java.util.Random;
  * Created by Adrian on 2017-04-08.
  */
 
-public abstract class BasicEntity extends Sprite {
+public abstract class BasicEntity extends Sprite implements Steer {
 
     public float width;
     public float height;
@@ -46,29 +47,17 @@ public abstract class BasicEntity extends Sprite {
         tex.dispose();
     }
 
-    /**
-     *
-     * Moving_methods
-     */
-
-    protected void forward(float delta) {
-        Vector2 w = getMovementVector(sprite.getRotation());
-
-        position.x -= w.x * SPEED * delta;
-        position.y -= w.y * SPEED * delta;
-    }
-
     protected void backward(float delta) {
         forward(delta);
     }
 
-    protected float toRad(float degrees)
-    {
+    @Override
+    public float toRad(float degrees) {
         return (degrees * MathUtils.PI) / 180.f;
     }
 
-    protected Vector2 getMovementVector(float rotation)
-    {
+    @Override
+    public Vector2 getMovementVector(float rotation) {
         Vector2 v = new Vector2();
         float rad = toRad(rotation);
 
@@ -76,5 +65,13 @@ public abstract class BasicEntity extends Sprite {
         v.y = -MathUtils.cos(rad);
 
         return v;
+    }
+
+    @Override
+    public void forward(float delta) {
+        Vector2 w = getMovementVector(sprite.getRotation());
+
+        position.x -= w.x * SPEED * delta;
+        position.y -= w.y * SPEED * delta;
     }
 }

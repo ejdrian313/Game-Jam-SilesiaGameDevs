@@ -68,10 +68,14 @@ public final class Game {
         eat = Gdx.audio.newMusic(Gdx.files.internal("eating.mp3"));
         dead2 = Gdx.audio.newMusic(Gdx.files.internal("dead2.wav"));
         playerHit = Gdx.audio.newMusic(Gdx.files.internal("playerHit.wav"));
+        music.setVolume(0.2f);
+        eat.setVolume(0.2f);
+        dead2.setVolume(0.2f);
+        playerHit.setVolume(0.2f);
     }
 
-    public void update(State state) {
-        handleInput(delta, state);
+    public void update() {
+        handleInput(delta);
         updateGame(delta);
     }
 
@@ -117,7 +121,7 @@ public final class Game {
         hudText = "Time to eat all the coal: " + (int)timeToEat + "\nYou killed: " + counter + "\nTime of game: " + (int)timeOfGame;
     }
 
-    private void handleInput(float d, State state) {
+    private void handleInput(float d) {
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
             MyGdxGame.setGameState(State.PAUSE);
         }
@@ -238,11 +242,8 @@ public final class Game {
     }
 
     public void paused() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             MyGdxGame.setGameState(State.RUN);
         }
-        batch.begin();
-        batch.draw(img, 0, 0);
-        batch.end();
     }
 }
