@@ -57,18 +57,18 @@ public class EnemyEntity extends MovableEntity {
     public void getRandomPosition() {
         if(wall == 0) {
             position.x = 0;
-            position.y = generator.nextInt(1000);
+            position.y = generator.nextInt(800);
             sprite.setRotation(270);
         } else if (wall == 1) {
-            position.x = generator.nextInt(1150);
+            position.x = generator.nextInt(1280);
             position.y = 0;
         } else if (wall == 2) {
-            position.x = 1150;
-            position.y = generator.nextInt(900);
+            position.x = 1280;
+            position.y = generator.nextInt(800);
             sprite.setRotation(90);
         } else  if (wall == 3) {
-            position.x = generator.nextInt(1100);
-            position.y = 1000;
+            position.x = generator.nextInt(1280);
+            position.y = 800;
             sprite.setRotation(180);
         }
     }

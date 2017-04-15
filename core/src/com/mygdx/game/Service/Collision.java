@@ -10,6 +10,7 @@ import com.mygdx.game.Items.Item;
  */
 
 public abstract class Collision {
+
     public static boolean isBulletHitEnemy(Bullet b, EnemyEntity e) {
         return !(b.position.x > e.position.x + e.width || b.position.x + b.width < e.position.x ||
                 b.position.y > e.position.y + e.height || b.position.y + b.height < e.position.y);
@@ -56,9 +57,7 @@ public abstract class Collision {
     }
 
     public static boolean overlaps(BasicEntity b, Item e) {
-        if(!(b.position.x+50 > e.position.x + e.width || b.position.x + b.width-50  < e.position.x ||
-                b.position.y+50 > e.position.y + e.height || b.position.y + b.height-50 < e.position.y)) {
-            return true;
-        } else return false;
+        return (!(b.position.x+50 > e.position.x + e.width || b.position.x + b.width-50  < e.position.x ||
+                b.position.y+50 > e.position.y + e.height || b.position.y + b.height-50 < e.position.y));
     }
 }

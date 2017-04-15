@@ -2,7 +2,6 @@ package com.mygdx.game.Entity;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Service.Steer;
 
 /**
  * Created by Adrian on 2017-04-15.

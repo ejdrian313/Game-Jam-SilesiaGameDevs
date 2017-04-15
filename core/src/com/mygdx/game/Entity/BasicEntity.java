@@ -1,12 +1,5 @@
 package com.mygdx.game.Entity;
 
-import com.badlogic.gdx.graphics.Cursor;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Service.Steer;
-
 import java.util.Random;
 
 /**

@@ -189,6 +189,12 @@ public final class Game {
         itemsToRemove.clear();
     }
 
+    public void paused() {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+            MyGdxGame.setGameState(State.RUN);
+        }
+    }
+
     private void checkCollision() {
         for(Bullet b : bullets) {
             if(Collision.isBulletOnScreen(b)) {
@@ -238,12 +244,6 @@ public final class Game {
                     eat.play();
                 }
             }
-        }
-    }
-
-    public void paused() {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            MyGdxGame.setGameState(State.RUN);
         }
     }
 }
