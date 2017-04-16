@@ -6,9 +6,12 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.mygdx.game.Service.Game;
-import com.mygdx.game.Service.State;
+import com.mygdx.game.Enums.State;
 
 public final class MyGdxGame extends ApplicationAdapter {
+    public final static String GAME_NAME = "Zombie Shooter";
+    public final static int WIDTH = 1280;
+    public final static int HEIGHT = 720;
     private static State state = State.RUN;
     private Game game;
     private ApplicationType appType;
