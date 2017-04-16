@@ -131,7 +131,7 @@ public final class Game {
 
     private void handleInput(float d) {
         if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-            MyGdxGame.setGameState(State.PAUSE);
+            MyGdxGame.setGameState(com.mygdx.game.Enums.State.PAUSE);
         }
         player.handleInput(d);
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && timeToReload > .5f && ammo > 0) {
@@ -153,7 +153,7 @@ public final class Game {
 
     private void addEnemy(float delta) {
         timer += delta;
-        if(timer > 0.5 && enemyEntities.size() < 50) {
+        if(timer > 1.5 && enemyEntities.size() < 50) {
             enemyEntities.add(new EnemyEntity("zombie"));
             enemyEntities.add(new EnemyEntity("zombie"));
             timer = 0;
@@ -203,7 +203,7 @@ public final class Game {
 
     public void paused() {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            MyGdxGame.setGameState(State.RUN);
+            MyGdxGame.setGameState(com.mygdx.game.Enums.State.RUN);
         }
     }
 
