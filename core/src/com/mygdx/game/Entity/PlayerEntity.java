@@ -48,15 +48,17 @@ public class PlayerEntity extends MovableEntity {
     }
 
     public void handleInput(float delta) {
-        float ROTATAION_SPEED = 5;
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            sprite.setRotation(sprite.getRotation() + ROTATAION_SPEED);
-        } else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            sprite.setRotation(sprite.getRotation() - ROTATAION_SPEED);
+        float ROTATION_SPEED = 6;
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+            sprite.setRotation(sprite.getRotation() + ROTATION_SPEED);
+        } else if(Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+            sprite.setRotation(sprite.getRotation() - ROTATION_SPEED);
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
             forward(delta);
-        } else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+        } else if(Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.A)) {
             backward(-delta);
         }
     }
