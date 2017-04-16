@@ -26,7 +26,7 @@ public class EnemyEntity extends MovableEntity {
         super(name, 0, 0);
         wall = generator.nextInt(4);
         getRandomPosition();
-        SPEED = 100;
+        SPEED = generator.nextInt(60)+40;
         //pb = new ProgressBar(position.x, position.y);
 
         walkSheet = new Texture(Gdx.files.internal("zombiewalk.png"));
