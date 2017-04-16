@@ -1,5 +1,7 @@
 package com.mygdx.game.Service;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Entity.BasicEntity;
 import com.mygdx.game.Entity.EnemyEntity;
 import com.mygdx.game.Items.Bullet;
@@ -59,5 +61,10 @@ public abstract class Collision {
     public static boolean overlaps(BasicEntity b, Item e) {
         return (!(b.position.x+35 > e.position.x + e.width || b.position.x + b.width-35  < e.position.x ||
                 b.position.y+35 > e.position.y + e.height || b.position.y + b.height-35 < e.position.y));
+    }
+
+    public static boolean overlaps(Vector2 touch, Sprite s) {
+        return (!(touch.x > s.getX() + s.getWidth() || touch.x  < s.getX() ||
+                touch.y > s.getY() + s.getHeight() || touch.y < s.getY()));
     }
 }
