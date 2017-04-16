@@ -12,8 +12,8 @@ public abstract class BasicEntity extends Entity {
 
     public BasicEntity(String name, float x, float y) {
         super(name, x, y);
-        width = tex.getWidth()/3;
-        height = tex.getHeight()/3;
+        width = tex.getWidth()/4;
+        height = tex.getHeight()/4;
         sprite.setSize(width, height);
         sprite.setOriginCenter();
     }

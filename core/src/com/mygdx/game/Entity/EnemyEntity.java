@@ -46,7 +46,8 @@ public class EnemyEntity extends MovableEntity {
         stateTime += delta;
         if(canMoving) {
             TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
-            batch.draw(currentFrame,position.x, position.y, sprite.getOriginX(), sprite.getOriginY(), (walkSheet.getWidth() / FRAME_COLS)/3, walkSheet.getHeight()/3, 1, 1, sprite.getRotation()+90);
+            batch.draw(currentFrame,position.x, position.y, sprite.getOriginX(), sprite.getOriginY(),
+                    (walkSheet.getWidth() / FRAME_COLS)/4, walkSheet.getHeight()/4, 1, 1, sprite.getRotation()+90);
         } else {
             sprite.setPosition(position.x, position.y);
             sprite.draw(batch);

@@ -22,8 +22,8 @@ public abstract class Collision {
     }
 
     public static boolean isPlayerHitEnemy(BasicEntity e, BasicEntity p) {
-        return !(e.position.x > p.position.x + p.width -60|| e.position.x + e.width < p.position.x+60 ||
-                e.position.y > p.position.y + p.height -60|| e.position.y + e.height < p.position.y+60);
+        return !(e.position.x > p.position.x + p.width -25|| e.position.x + e.width < p.position.x+25 ||
+                e.position.y > p.position.y + p.height -25|| e.position.y + e.height < p.position.y+25);
     }
 
     public static boolean isEnemyOnScreen(EnemyEntity e) {
@@ -57,7 +57,7 @@ public abstract class Collision {
     }
 
     public static boolean overlaps(BasicEntity b, Item e) {
-        return (!(b.position.x+50 > e.position.x + e.width || b.position.x + b.width-50  < e.position.x ||
-                b.position.y+50 > e.position.y + e.height || b.position.y + b.height-50 < e.position.y));
+        return (!(b.position.x+35 > e.position.x + e.width || b.position.x + b.width-35  < e.position.x ||
+                b.position.y+35 > e.position.y + e.height || b.position.y + b.height-35 < e.position.y));
     }
 }

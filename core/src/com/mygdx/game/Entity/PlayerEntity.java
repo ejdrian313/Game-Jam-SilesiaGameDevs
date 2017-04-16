@@ -39,7 +39,7 @@ public class PlayerEntity extends MovableEntity {
         sprite.setPosition(position.x, position.y);
         TextureRegion currentFrame = walkAnimation.getKeyFrame(stateTime, true);
         batch.draw(currentFrame, position.x, position.y, sprite.getOriginX()+20, sprite.getOriginY()-20,
-                (walkSheet.getWidth() / FRAME_COLS)/3, walkSheet.getHeight()/3, 1, 1, sprite.getRotation()+90);
+                (walkSheet.getWidth() / FRAME_COLS)/4, walkSheet.getHeight()/4, 1, 1, sprite.getRotation()+90);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.mygdx.game.Service;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
@@ -59,10 +60,9 @@ public final class Game {
         bulletsToRemove = new LinkedList<>();
         items = new LinkedList<>();
         itemsToRemove = new LinkedList<>();
-        items.add(new Item("precious", 500, 500));
+        items.add(new Item("precious", 600, 350));
         text = new Texture("lose.png");
         font = new BitmapFont();
-        font.getData().setScale(2);
         font.setColor(Color.BLACK);
         music = Gdx.audio.newMusic(Gdx.files.internal("shoot.wav"));
         eat = Gdx.audio.newMusic(Gdx.files.internal("eating.mp3"));
@@ -74,18 +74,26 @@ public final class Game {
         playerHit.setVolume(0.2f);
     }
 
-    public void update() {
-        handleInput(delta);
+    public void update(Application.ApplicationType appType) {
+        if(appType == Application.ApplicationType.Android) {
+            handleInputOnAndroid(delta);
+        } else {
+            handleInput(delta);
+        }
         updateGame(delta);
+        updateTime();
+    }
+
+    private void updateTime() {
+        delta = Gdx.graphics.getDeltaTime();
+        timeToReload += delta;
+        timeOfGame += delta;
     }
 
     public void draw() {
         batch.begin();
         drawAll(batch);
         batch.end();
-        delta = Gdx.graphics.getDeltaTime();
-        timeToReload += delta;
-        timeOfGame += delta;
     }
 
     public void dispose() {
@@ -139,6 +147,10 @@ public final class Game {
         }
     }
 
+    private void handleInputOnAndroid(float delta) {
+
+    }
+
     private void addEnemy(float delta) {
         timer += delta;
         if(timer > 0.5 && enemyEntities.size() < 50) {
@@ -167,7 +179,7 @@ public final class Game {
         if(lose || timeToEat <= 0) {
             batch.draw(text, 0, 0, 1200, 1200);
         }
-        font.draw(batch, hudText, 20, 950);
+        font.draw(batch, hudText, 20, 700);
     }
 
     private void destroy() {
