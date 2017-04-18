@@ -12,7 +12,7 @@ public final class MyGdxGame extends ApplicationAdapter {
     public final static String GAME_NAME = "Zombie Shooter";
     public final static int WIDTH = 1280;
     public final static int HEIGHT = 720;
-    private static State state = State.RUN;
+    private static State state = State.STARTED;
     private Game game;
     private ApplicationType appType;
 
@@ -26,6 +26,11 @@ public final class MyGdxGame extends ApplicationAdapter {
 	public void render () {
         switch (state)
         {
+            case STARTED:
+                game.start();
+                clear();
+                game.drawStartScreen();
+                break;
             case RUN:
                 game.update(appType);
                 clear();

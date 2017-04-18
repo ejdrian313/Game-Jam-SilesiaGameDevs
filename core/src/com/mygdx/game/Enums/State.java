@@ -7,5 +7,6 @@ package com.mygdx.game.Enums;
 public enum State {
     PAUSE,
     RUN,
+    STARTED,
     RESUME
 }
