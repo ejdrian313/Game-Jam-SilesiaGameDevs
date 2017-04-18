@@ -38,6 +38,7 @@ public final class Game {
     private BitmapFont font;
     private Texture img;
     private Texture text;
+    private Texture startImage;
     private PlayerEntity player;
     private LinkedList<Item> items;
     private LinkedList<Item> itemsToRemove;
@@ -52,6 +53,7 @@ public final class Game {
         batch = new SpriteBatch();
         img = new Texture("ground.jpg");
         player = new PlayerEntity("player", 400, 400);
+        startImage = new Texture("startScreen.png");
         particleSystems = new LinkedList<>();
         particleSystemsToRemove = new LinkedList<>();
         enemyEntities = new LinkedList<>();
@@ -257,5 +259,18 @@ public final class Game {
                 }
             }
         }
+    }
+
+    public void start() {
+        if(Gdx.input.isTouched()) {
+            MyGdxGame.setGameState(com.mygdx.game.Enums.State.RUN);
+        }
+
+    }
+
+    public void drawStartScreen() {
+        batch.begin();
+        batch.draw(startImage, 0, 0);
+        batch.end();
     }
 }
